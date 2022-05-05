@@ -15,7 +15,7 @@ function App() {
 
   return (
    <>
-   <h1> Lista de pelis</h1>
+   <h1> Lista de pelis Wow</h1>
   <MovieSceneList movies={dataMovies} />
    
    </>
