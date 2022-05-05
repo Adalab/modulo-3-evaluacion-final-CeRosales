@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import getApiData from '../services/moviesApi';
+import MovieSceneList from './MovieSceneList';
 //import '../App.css';
 
 function App() {
@@ -15,7 +16,7 @@ function App() {
   return (
    <>
    <h1> Lista de pelis</h1>
-
+  <MovieSceneList movies={dataMovies} />
    
    </>
 
