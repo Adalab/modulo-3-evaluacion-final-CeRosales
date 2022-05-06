@@ -4,7 +4,7 @@ function MovieSceneList(props) {
     const movieElements = props.movies.map((movie) => { 
         return (
              <li key={movie.id}>
-            <Movie movie={movie}/>
+            <Movie key={movie.id} movie={movie}/>
         </li>
         );
     });
