@@ -8,6 +8,8 @@ const getApiData = () => {
             year: movie.year,
             frase: movie.full_line,
             poster: movie.poster,
+            director: movie.director,
+            audio: movie.video.audio,
             };
         });
         return dataClean;
