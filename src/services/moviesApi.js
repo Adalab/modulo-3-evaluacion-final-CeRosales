@@ -4,6 +4,7 @@ const getApiData = () => {
     .then((data) => {
         const dataClean = data.map((movie) => {
             return {
+            //id: index;
             movie: movie.movie,
             year: movie.year,
             frase: movie.full_line,
