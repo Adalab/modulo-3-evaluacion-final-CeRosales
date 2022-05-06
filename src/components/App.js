@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
+import {Routes, Route} from 'react-router-dom';
+import {matchPath, useLocation} from 'react-router';
 import getApiData from '../services/moviesApi';
 import MovieSceneList from './MovieSceneList';
 import Filters from './Filters';
+import MovieSceneDetail from './MovieSceneDetail';
 
 
 function App() {
@@ -54,16 +57,38 @@ function App() {
     return uniqueYear;
   };
  
+  const {pathname} = useLocation();
+  const dataPath = matchPath("/movie/:id", pathname)
+  const movieId = dataPath !== null ? dataPath.params.id : null;
+  const movieFound = movieFilters.find((movie) => movie.id === parseInt(movieId));
 
   return (
    <>
    <h1> Lista de pelis Wow</h1>
-   <Filters
+   <div>
+
+   <Routes>
+     <Route path="/" element={
+    <>
+    <Filters
     handleFilterYear={handleFilterYear} 
     handleFilterMovie={handleFilterMovie}
     years ={getYear()}
     filterMovie={filterMovie}/>
-  <MovieSceneList movies={movieFilters} />
+
+   <MovieSceneList movies={movieFilters} />
+   </>
+   }
+     
+  />
+  
+  <Route
+  path="/movie/:id"
+  element={<MovieSceneDetail movie ={movieFound} />}
+   />
+
+   </Routes>  
+   </div>
   
    
    </>
