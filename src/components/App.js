@@ -77,6 +77,7 @@ function App() {
     filterMovie={filterMovie}/>
 
    <MovieSceneList movies={movieFilters} />
+   
    </>
    }
      

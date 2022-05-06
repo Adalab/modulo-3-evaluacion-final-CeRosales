@@ -1,3 +1,5 @@
+import {Link} from 'react-router-dom';
+
 function MovieSceneDetail(props) {
     return (
     <section>

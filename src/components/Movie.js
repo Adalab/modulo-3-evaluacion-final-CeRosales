@@ -1,7 +1,10 @@
 import '../styles/Movie.scss';
+import {Link} from 'react-router-dom';
+
 
 function Movie(props) {
     return (
+      <>
       <div className='contenedor'>
         <div className='contenedor1'>
           <img 
@@ -14,9 +17,14 @@ function Movie(props) {
           <h3 className="movie_movie">{props.movie.movie}</h3>
          
           <h4 className="movie_year">{props.movie.year}</h4>
-      </div>  
-      </div>
-    )
+           </div>  
+           </div>
+
+          <Link to ={`/movie/${props.movie.id}`}>
+        More details here
+      </Link>
+      </>
+    );
 };
 
 export default Movie;
