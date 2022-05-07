@@ -5,13 +5,32 @@ import getApiData from '../services/moviesApi';
 import MovieSceneList from './MovieSceneList';
 import Filters from './Filters';
 import MovieSceneDetail from './MovieSceneDetail';
+import localStorage from '../services/localStorageMovies';
 
 
 function App() {
   const [dataMovies, setDataMovies] = useState([]);
-  const [filterMovie, setFilterMovie] = useState("");
-  const [filterYears, setFilterYears] = useState("");
+  const [filterMovie, setFilterMovie] = useState(
+    localStorage.get("name", "")
+  );
+  const [filterYears, setFilterYears] = useState(
+    localStorage.get("year", "")
+  );
 
+
+useEffect(() => {
+  if (dataMovies.length === 0) {
+  getApiData().then((dataClean) => {
+    setDataMovies(dataClean);
+  });
+ }
+}, []);  
+
+useEffect(() => {
+  localStorage.set("movies", dataMovies);
+  localStorage.set("movie", filterMovie);
+  localStorage.set("years", filterYears);
+}, [dataMovies, filterMovie, filterYears]); // cuando cambie lo guarda aquí
 
 
 //handles para los inputs
@@ -23,6 +42,9 @@ function App() {
     setFilterYears(value);
   };
 
+  const PreventSubmitDefault = (ev) => {
+    ev.preventDefault();
+  };
 
 
   useEffect(() => {
@@ -57,6 +79,8 @@ function App() {
     return uniqueYear;
   };
  
+
+  // traemos el id que hemos creado en la api con index
   const {pathname} = useLocation();
   const dataPath = matchPath("/movie/:id", pathname)
   const movieId = dataPath !== null ? dataPath.params.id : null;
@@ -73,11 +97,11 @@ function App() {
     <Filters
     handleFilterYear={handleFilterYear} 
     handleFilterMovie={handleFilterMovie}
+    PreventSubmitDefault={PreventSubmitDefault}
     years ={getYear()}
     filterMovie={filterMovie}/>
 
    <MovieSceneList movies={movieFilters} />
-   
    </>
    }
      

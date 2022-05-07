@@ -10,7 +10,7 @@ function Movie(props) {
           <img 
           className="movie_poster"
           src ={props.movie.poster}
-          alt="foto peli"/>
+          alt={props.movie.movie}/>
           </div>
           <div className='contenedor2'>
            <h3 className="movie_frase">{props.movie.frase}</h3>

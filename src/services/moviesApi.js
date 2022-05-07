@@ -10,7 +10,7 @@ const getApiData = () => {
             frase: movie.full_line,
             poster: movie.poster,
             director: movie.director,
-            audio: movie.video.audio,
+            audio: movie.audio,
             };
         });
         return dataClean;
